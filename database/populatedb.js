@@ -12,6 +12,7 @@ const SQL =
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name TEXT,
   brand TEXT,
+  price INTEGER,
   quantity INTEGER,
   category_id INTEGER,
   CONSTRAINT fk_category

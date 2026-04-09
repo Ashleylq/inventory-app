@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Item</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="center">
+        <form method="POST" action=<%=link%>>
+            <div class="input-c"><label for="name">Name: </label>
+            <input id="name" name="name" required value=<%if(item){%><%=item.name%><%} %>></div>
+            <br>
+            <div class="input-c"><label for="brand">Brand: </label>
+            <input id="brand" name="brand" value=<%if(item){%><%=item.brand%><%}%>></div>
+            <br>
+            <div class="input-c"><label for="price">Price: </label>
+            <input id="price" name="price" type="number" value=<%if(item){%><%=item.price%><%}%>></div>
+            <br>
+            <div class="input-c"><label for="quantity">Quantity: </label>
+            <input id="quantity" name="quantity" type="number" value=<%if(item){%><%=item.quantity%><%}%>></div>
+            <br>
+            <div class="input-c"><label for="category">Category: </label>
+            <select name="categoryId" id="category">
+                <% if(categories){%>
+                <% categories.map((category) => {%>
+                <option value=<%=category.id%> selected=<%if(item){if(item.category_id == category.id){%><%="selected"%><%}}%>><%=category.name%></option>
+                <%})}%>
+            </select></div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>

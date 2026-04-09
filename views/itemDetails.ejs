@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=details.name%></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar')%>
+    <div class="center">
+        <p>ID: <%=details.id%></p>
+        <p>Item: <%=details.name%></p>
+        <p>Brand: <%=details.brand%></p>
+        <p>Stock: <%=details.quantity%></p>
+        <p>Price: <%=details.price%></p>
+        <p>Category: <%= details.category_name ? details.category_name : "Uncategorised" %></p>
+        <a href="/items/edit/<%=details.id%>"><button>Edit</button></a>
+        <a href="/items/delete/<%=details.id%>"><button class="delete">Delete</button></a>
+    </div>
+</body>
+</html>

@@ -15,26 +15,29 @@ async function getItemsOnCategory(categoryId) {
     return rows;
 }
 
-async function getItemsOnName(name) {
-    const { rows } = await pool.query("SELECT * FROM items WHERE name LIKE $1", [name + '%']);
-    return rows;
+async function getItemDetails(id) {
+    const { rows } = await pool.query(`SELECT items.id, items.name as name, brand, price, quantity, categories.name as category_name FROM items
+                                       INNER JOIN categories ON categories.id = category_id
+                                       WHERE items.id = $1;`, [id]);
+    return rows[0];
 }
 
-async function createItem(name, brand, quantity, categoryId) {
-    await pool.query("INSERT INTO items(name, brand, quantity, catergory_id) VALUES($1, $2, $3, $4)", [name, brand, quantity, categoryId]);
+async function createItem(name, brand, price, quantity, categoryId) {
+    await pool.query("INSERT INTO items(name, brand, price, quantity, category_id) VALUES($1, $2, $3, $4, $5)", [name, brand, price, quantity, categoryId]);
 }
 
 async function createCategory(name){
     await pool.query("INSERT INTO categories(name) VALUES($1)", [name]);
 }
 
-async function editItem(id, name, brand, quantity, category){
+async function editItem(id, name, brand, price, quantity, category){
     await pool.query(`UPDATE items
          SET name = $1,
              brand = $2,
-             quantity = $3,
-             category = $4
-         WHERE id = $5`, [name, brand, quantity, category, id]);
+             price = $3,
+             quantity = $4,
+             category_id = $5
+         WHERE id = $6`, [name, brand, price, quantity, category, id]);
 }
 
 async function editCategory(id, name){
@@ -53,7 +56,7 @@ module.exports = {
     getAllItems,
     getAllCategories,
     getItemsOnCategory,
-    getItemsOnName,
+    getItemDetails,
     createItem,
     createCategory,
     editItem,
