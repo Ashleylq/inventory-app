@@ -2,7 +2,7 @@ const { createCategory, createItem, getAllCategories } = require("../database/qu
 
 async function renderItemCreatePage(req, res){
     const categories = await getAllCategories();
-    res.render("createItem", { categories, item : null, link : '/items/create' });
+    res.render("createItem", { categories, item : null, link : '/items/create', action : 'Create'});
 }
 
 async function postCreateItem(req, res){
@@ -11,7 +11,19 @@ async function postCreateItem(req, res){
     res.redirect('/items');
 }
 
+async function renderCreateCategory(req, res){
+    res.render("createCategory", {action : "Create", link : '/categories/create', category : null});
+}
+
+async function postCreateCategory(req, res){
+    const { name } = req.body;
+    await createCategory(name);
+    res.redirect('/categories');
+}
+
 module.exports = {
     renderItemCreatePage,
-    postCreateItem
+    postCreateItem,
+    renderCreateCategory,
+    postCreateCategory
 }

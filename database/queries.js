@@ -22,6 +22,10 @@ async function getItemDetails(id) {
     return rows[0];
 }
 
+async function getCategoryDetails(id){
+    const { rows } = await pool.query("SELECT * FROM categories WHERE id = $1", [id]);
+}
+
 async function createItem(name, brand, price, quantity, categoryId) {
     await pool.query("INSERT INTO items(name, brand, price, quantity, category_id) VALUES($1, $2, $3, $4, $5)", [name, brand, price, quantity, categoryId]);
 }
@@ -57,6 +61,7 @@ module.exports = {
     getAllCategories,
     getItemsOnCategory,
     getItemDetails,
+    getCategoryDetails,
     createItem,
     createCategory,
     editItem,

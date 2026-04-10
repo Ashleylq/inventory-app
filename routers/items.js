@@ -1,14 +1,19 @@
 const { Router } = require("express");
 const itemRouter = Router();
 
-const { renderAllItems } = require("../controllers/view");
+const { renderAllItems, renderItemsOnCategory } = require("../controllers/view");
 const { renderItemDetails } = require("../controllers/details");
 const { deleteItemAndRedirect } = require("../controllers/delete");
 const { renderItemCreatePage, postCreateItem } = require("../controllers/create")
-const { renderEditItem, postEditItem } = require("../controllers/edit")
+const { renderEditItem, postEditItem } = require("../controllers/edit");
 
 itemRouter.get('/', (req, res) => {
-    renderAllItems(req, res);
+    if(req.query.category){
+        renderItemsOnCategory(req, res);
+    }
+    else{
+        renderAllItems(req, res);
+    }
 })
 
 itemRouter.get('/details/:id', (req, res) => {

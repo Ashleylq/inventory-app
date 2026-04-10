@@ -11,10 +11,10 @@
     <div class="center">
         <form method="POST" action=<%=link%>>
             <div class="input-c"><label for="name">Name: </label>
-            <input id="name" name="name" required value=<%if(item){%><%=item.name%><%} %>></div>
+            <input id="name" name="name" required value="<%if(item){%><%=item.name%><%} %>"></div>
             <br>
             <div class="input-c"><label for="brand">Brand: </label>
-            <input id="brand" name="brand" value=<%if(item){%><%=item.brand%><%}%>></div>
+            <input id="brand" name="brand" value="<%if(item){%><%=item.brand%><%}%>"></div>
             <br>
             <div class="input-c"><label for="price">Price: </label>
             <input id="price" name="price" type="number" value=<%if(item){%><%=item.price%><%}%>></div>
@@ -29,7 +29,7 @@
                 <option value=<%=category.id%> selected=<%if(item){if(item.category_id == category.id){%><%="selected"%><%}}%>><%=category.name%></option>
                 <%})}%>
             </select></div>
-            <button type="submit">Create</button>
+            <button type="submit"><%=action%></button>
         </form>
     </div>
 </body>
