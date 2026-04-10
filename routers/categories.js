@@ -38,7 +38,7 @@ categoryRouter.get('/edit/:id', (req, res) => {
     renderEditCategory(req, res);
 })
 
-categoryRouter.get('/edit/:id', (req, res) => {
+categoryRouter.post('/edit/:id', (req, res) => {
     postEditCategory(req, res);
 })
 

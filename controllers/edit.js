@@ -24,7 +24,7 @@ async function postEditSelection(req, res){
 
 async function renderEditCategory(req, res){
     const category = await getCategoryDetails(req.params.id)
-    res.render('createCategory',{action : 'Edit', link : '/categories/edit/' + req.params.id, category})
+    res.render('createCategory',{action : 'Edit', link : '/categories/edit/' + req.params.id, category : category})
 }
 
 async function postEditCategory(req, res){
